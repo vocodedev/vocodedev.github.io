@@ -13,7 +13,7 @@ theme = "paper"
   rss = true                                # show rss icon
 
   # home page profile
-  avatar = 'https://avatars.githubusercontent.com/u/126283459?s=200&v=4'                 # gravatar email or image url
+  avatar = '/vocode_logo.jpeg'
   name = 'Vocode'
   bio = 'Vocode is an open-source library for building voice-based LLM applications.'
 
