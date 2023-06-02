@@ -1,0 +1,25 @@
+baseURL = 'https://vocode.dev/'
+languageCode = 'en-us'
+title = 'Vocode'
+theme = "paper"
+
+[params]
+  # color style
+  color = 'linen'                           # linen, wheat, gray, light
+
+  # header social icons
+  twitter = 'vocodehq'               # twitter.com/YOUR_TWITTER_ID
+  github = 'vocodedev'                 # github.com/YOUR_GITHUB_ID
+  rss = true                                # show rss icon
+
+  # home page profile
+  avatar = 'https://avatars.githubusercontent.com/u/126283459?s=200&v=4'                 # gravatar email or image url
+  name = 'Vocode'
+  bio = 'Vocode is an open-source library for building voice-based LLM applications.'
+
+
+  # misc
+  disableHLJS = true                        # disable highlight.js
+  monoDarkIcon = true                       # show monochrome dark mode icon
+#   gravatarCdn = 'GRAVATAR_CDN_LINK'         # e.g. 'https://cdn.v2ex.com/gravatar/'
+#   graphCommentId = "YOUR_GRAPH_COMMENT_ID"  # use graph comment (disqus alternative)

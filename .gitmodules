@@ -1,0 +1,3 @@
+[submodule "themes/paper"]
+	path = themes/paper
+	url = git@github.com:vocodedev/hugo-paper.git
