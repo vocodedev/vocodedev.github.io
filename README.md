@@ -2,7 +2,7 @@
 
 ## Set up
 
-1. Clone this repo by running `git clone --recurse-submodules git@github.com:vocodedev/blog.git`.
+1. Clone this repo by running `git clone --recurse-submodules git@github.com:vocodedev/vocodedev.github.io.git`.
 2. Install [Hugo](https://gohugo.io/installation/) and run `hugo server` to start a local server.
 
 ## New Blog Post
