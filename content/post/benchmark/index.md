@@ -46,7 +46,7 @@ To measure the latency of natural language generation systems, we use a simple m
 
 We also compute the characters per second by keeping track of the total number of characters generated across the 5 runs and dividing that by the total time taken to generate all the responses.
 
-To test these agents, we use the preamble/system message "The AI is having a very long conversation about life" with the prompt "Write 1000 words about the meaning of life".
+To test these agents, we use the preamble/system message "The AI is having a very long conversation about life" with the prompt "Write 1000 words about the meaning of life". We want the agent to generate many sentences so the the initial response time does not greatly impact the characters per second.
 
 Our results are as follows:
 
@@ -112,7 +112,7 @@ Thank you for reading and happy benchmarking! 🎙️
 Replicating our results is relatively simple. Clone the [vocode-python](https://github.com/vocodedev/vocode-python) repo, install the dependencies with `poetry install --extras all`, and run the following commands:
 
 - Transcribers: `python playground/streaming/benchmark.py --transcribers deepgram assemblyai --transcriber_num_cycles 5 --create_graphs`
-- Agents: `python playground/streaming/benchmark.py --agents all --agent_num_cycles 5 --create_graphs`
+- Agents: `python playground/streaming/benchmark.py --agents all --agent_num_cycles 5 --agent_prompt_preamble "The AI is having a very long conversation about life" --agent_first_input "Write 1000 words about the meaning of life" --create_graphs`
 - Synthesizers: `python playground/streaming/benchmark.py --synthesizers elevenlabs azure google gtts playht rime streamelements --synthesizer_num_cycles 5 --create_graphs`
 
 You can see more details about the script and its options by running `python playground/streaming/benchmark.py --help` or viewing [the documentation](https://docs.vocode.dev/tracing#benchmarking-script). If you have any questions or issues, feel free to ask us [on discord](https://discord.gg/NaU4mMgcnC) or [open an issue on GitHub](https://github.com/vocodedev/vocode-python/issues).
