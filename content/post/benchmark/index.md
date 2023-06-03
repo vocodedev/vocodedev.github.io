@@ -29,6 +29,10 @@ Our results are as follows:
 | Deepgram | 0 | 1.37 | 0.63 |
 | AssemblyAI | 0 | 1.95 | 0.36 |
 
+|||
+|-|-|
+|![Bar graph of transcribers maximum latency](transcriber_max_latency.png)|![Bar graph of transcribers average latency](transcriber_avg_latency.png)|
+
 Both Deepgram and AssemblyAI have very low latency, with AssemblyAI having a ≈43% lower average latency than Deepgram. AssemblyAI does have a half-second greater maximum latency, which means it may take slightly longer than Deepgram at worst. However, latency is not the only factor to consider when choosing a transcriber. Accuracy and cost are also important, and they may vary depending on the type and quality of the audio input, the language and dialect of the speaker, the background noise, and the domain of the speech. Therefore, we recommend testing different transcribers on your own data and use cases to find the best fit for your voice-based LLM application.
 
 ## Agents
@@ -42,20 +46,27 @@ To measure the latency of natural language generation systems, we use a simple m
 
 We also compute the characters per second by keeping track of the total number of characters generated across the 5 runs and dividing that by the total time taken to generate all the responses.
 
-To test these agents, we use the preamble "The AI is having a very short and pleasant conversation about life" with the prompt "What is the meaning of life?".
+To test these agents, we use the preamble/system message "The AI is having a very long conversation about life" with the prompt "Write 1000 words about the meaning of life".
 
 Our results are as follows:
 
-| Agent | Generate First (s) | Generate Total (s) | Characters per Second |
-|-------------------|--------------------|--------------------|-----------------------|
-| gpt-3.5-turbo | 0.84 | 3.01 | 146.03 |
-| gpt-4 | 5.30 | 18.91 | 18.10 |
-| claude-v1 | 0.79 | 1.35 | 97.04 |
-| claude-instant-v1 | 0.44 | 2.61 | 384.92 |
+| Agent              | Generate First (s) | Generate Total (s) | Characters per Second |
+|--------------------|--------------------|--------------------|-----------------------|
+| gpt-3.5-turbo      | 1.02               | 8.86               | 431.20                |
+| gpt-4              | 6.31               | 121.53             | 26.59                 |
+| azuregpt-3.5-turbo | 1.90               | 10.71              | 250.40                |
+| claude-v1          | 0.70               | 6.42               | 150.87                |
+| claude-instant-v1  | 0.33               | 2.46               | 395.11                |
 
-Claude Instant is by far the fastest model: It is 163% faster than gpt-3.5-turbo, which is the second fastest model. Claude Instant is 2027% faster than GPT-4. Claude Instant is also the fastest to respond: It provides an initial response in about half the time as gpt-3.5-turbo and in 8% as much time as gpt-4.
+|||
+|-|-|
+|![Bar graph of agents time to first response](agent_generate_first.png)|![Bar graph of agents characters per second](agent_characters_per_second.png)|
 
-However, it is also important to consider quality when choosing an agent. Claude Instant may be fast, but GPT-4 is sure to provide more intelligent answers. Therefore, we recommend testing different agents on your own data and use cases to find the best fit for your voice-based LLM application.
+Claude Instant and GPT 3.5 Turbo are similar in terms of speed, with Claude Instant being slightly faster in its initial response but GPT 3.5 Turbo being about 9% faster by characters per second. GPT 3.5 Turbo is overall about 16x faster than GPT 4. AzureGPT 3.5 Turbo is 58% as fast as OpenAI's GPT 3.5 Turbo and has almost 2x the initial response time. Claude v1 is the second fastest agent at returning its first response, but it is the second slowest in characters per second.
+
+Overall, OpenAI's GPT 3.5 Turbo is an overall great choice: It is the fastest agent in terms of characters per second and is reasonly fast at returning its first response. However, if you need an initial response as fast as possible, then Claude Instant is the best choice.
+
+It is also important to consider quality when choosing an agent. Claude Instant and GPT 3.5 may be fast, but GPT-4 is sure to provide more intelligent answers. Therefore, we recommend testing different agents on your own data and use cases to find the best fit for your voice-based LLM application.
 
 ## Synthesizers
 
@@ -81,6 +92,10 @@ Our results are as follows:
 | PlayHT | 9.81 | 0.22 | 10.03 |
 | Rime | 2.84 | 0.01 | 2.85 |
 | Stream Elements | 0.09 | 0.22 | 0.31 |
+
+|||
+|-|-|
+|![Bar graph of synthesizers synthesis time](synthesizer_create_total.png)|![Bar graph of synthesizers conversion time](synthesizer_convert.png)|
 
 Stream Elements is by far the fastest synthesizer: It synthesized the test sentence 6x faster than Azure, the second fastest synthesizer. If conversion time is taken into account, StreamElements is still the fastest, but only 1.7x faster than Azure. StreamElements is also completely free! Compared to GTTS, another free synthesizer, StreamElements is faster and higher quality. Azure provides an excellent trade off between quality and latency. Azure's samples sound natural and realistic while still being more than 9x faster than ElevenLabs, 18x faster than PlayHT, and only about 1/5 a second slower than StreamElements. If you want the best quality and latency isn't a big concern, then ElevenLabs is definitely the best choice. Rime can synthesize about twice as fast ElevenLabs and sounds decent. It is up to you to determine if the quality-latency tradeoff makes Rime a better choice than ElevenLabs.
 
